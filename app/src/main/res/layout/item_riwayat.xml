@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Top row: PC code + avatar + status badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@android:drawable/sym_def_app_icon"
+                android:background="@drawable/circle_avatar_bg"
+                android:padding="2dp" />
+
+            <TextView
+                android:id="@+id/tvKodePC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PC-001"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/tvStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SELESAI"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:background="@drawable/bg_badge_selesai"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp" />
+
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Detail rows -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NIM"
+                android:textSize="12sp"
+                android:textColor="#9E9E9E" />
+
+            <TextView
+                android:id="@+id/tvNim"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="241090909"
+                android:textSize="12sp"
+                android:textColor="#1A1A1A" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Keperluan"
+                android:textSize="12sp"
+                android:textColor="#9E9E9E" />
+
+            <TextView
+                android:id="@+id/tvKeperluan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Praktikum PBO"
+                android:textSize="12sp"
+                android:textColor="#1A1A1A" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Waktu Mulai"
+                android:textSize="12sp"
+                android:textColor="#9E9E9E" />
+
+            <TextView
+                android:id="@+id/tvWaktuMulai"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="10 Jun 2026, 09:00"
+                android:textSize="12sp"
+                android:textColor="#1A1A1A" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Waktu Selesai"
+                android:textSize="12sp"
+                android:textColor="#9E9E9E" />
+
+            <TextView
+                android:id="@+id/tvWaktuSelesai"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="10 Jun 2026, 12:00"
+                android:textSize="12sp"
+                android:textColor="#1A1A1A" />
+        </LinearLayout>
+
+        <!-- Action button (only visible for AKTIF status, hide via code if SELESAI) -->
+        <Button
+            android:id="@+id/btnKembalikan"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Kembalikan PC"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:backgroundTint="#1A73E8"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

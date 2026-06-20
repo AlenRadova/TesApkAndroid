@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/nav_data_pc"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Data PC" />
+
+    <item
+        android:id="@+id/nav_transaksi"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="Pinjam" />
+
+    <item
+        android:id="@+id/nav_riwayat"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="Riwayat" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Profil" />
+
+</menu>

@@ -15,7 +15,6 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    // Menggunakan TextInputEditText sesuai komponen di XML barumu
     private TextInputEditText etNama, etNim, etEmail, etPassword;
     private Button btnRegister;
     private TextView tvLogin;
@@ -27,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
 
-        // Pengaturan padding full screen otomatis
+        // Menghubungkan ID main di XML yang sudah kita tambahkan sebelumnya
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -36,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        // Inisialisasi ID sesuai dengan file XML barumu
         etNama = findViewById(R.id.etNama);
         etNim = findViewById(R.id.etNim);
         etEmail = findViewById(R.id.etEmail);
@@ -44,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         tvLogin = findViewById(R.id.tvLogin);
 
-        // Eksekusi tombol Daftar Sekarang
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,31 +50,27 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
 
-                // Validasi input kosong
                 if (nama.isEmpty() || nim.isEmpty() || email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Semua kolom wajib diisi!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // Validasi panjang password minimal 6 karakter sesuai hint XML
                 if (password.length() < 6) {
                     Toast.makeText(RegisterActivity.this, "Password minimal 6 karakter!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // Simpan data ke SQLite (Default Role sebagai 'USER')
                 boolean isSuccess = dbHelper.registerUser(nama, nim, email, password, "USER");
 
                 if (isSuccess) {
                     Toast.makeText(RegisterActivity.this, "Registrasi Berhasil! Silakan Login", Toast.LENGTH_LONG).show();
-                    finish(); // Menutup halaman register dan otomatis kembali ke login
+                    finish();
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Registrasi Gagal! Email mungkin sudah digunakan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Registrasi Gagal!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        // Aksi teks "Masuk" jika ingin kembali ke halaman login
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

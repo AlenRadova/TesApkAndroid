@@ -2,236 +2,168 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F6FA">
 
-    <!-- HEADER -->
     <LinearLayout
-        android:id="@+id/layoutHeader"
-        android:layout_width="0dp"
+        android:id="@+id/layoutHeaderSearch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#1A73E8"
         android:paddingHorizontal="20dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="40dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data PC"
+            android:text="Data Perangkat PC"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="12dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Kelola dan pantau status semua PC"
-            android:textColor="#BBDEFB"
-            android:textSize="13sp" />
-
-    </LinearLayout>
-
-    <!-- SEARCH + FILTER ROW -->
-    <LinearLayout
-        android:id="@+id/layoutSearch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="16dp"
-        android:layout_marginTop="-20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHeader">
-
-        <!-- Search box -->
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp"
-            app:cardBackgroundColor="#FFFFFF">
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:paddingHorizontal="14dp">
+                android:paddingHorizontal="16dp">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@android:drawable/ic_menu_search"
-                    android:tint="#9E9E9E" />
+                    app:tint="#757575"
+                    tools:ignore="ContentDescription" />
 
                 <EditText
-                    android:id="@+id/etSearch"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    android:hint="Cari kode PC..."
+                    android:id="@+id/etSearchPC"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:hint="Cari kode PC atau lokasi..."
                     android:textSize="14sp"
                     android:textColor="#1A1A1A"
-                    android:textColorHint="#9E9E9E"
-                    android:background="@android:color/transparent"
+                    android:layout_marginStart="12dp"
                     android:inputType="text"
-                    android:singleLine="true" />
-
+                    tools:ignore="Autofill" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <!-- Filter button -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp"
-            app:cardBackgroundColor="#1A73E8">
-
-            <ImageButton
-                android:id="@+id/btnFilter"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@android:drawable/ic_menu_sort_by_size"
-                android:tint="#FFFFFF"
-                android:background="@android:color/transparent"
-                android:scaleType="centerInside"
-                android:padding="12dp" />
-
-        </androidx.cardview.widget.CardView>
-
     </LinearLayout>
 
-    <!-- FILTER CHIPS (Semua / Tersedia / Dipinjam / Maintenance) -->
     <HorizontalScrollView
-        android:id="@+id/scrollChips"
-        android:layout_width="0dp"
+        android:id="@+id/scrollFilters"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="12dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeaderSearch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutSearch">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="16dp">
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/chipSemua"
+                android:id="@+id/btnFilterSemua"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Semua"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/bg_chip_selected"
-                android:paddingHorizontal="18dp"
+                android:background="#1A73E8"
+                android:paddingHorizontal="16dp"
                 android:paddingVertical="8dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"/>
 
             <TextView
-                android:id="@+id/chipTersedia"
+                android:id="@+id/btnFilterTersedia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tersedia"
                 android:textSize="13sp"
-                android:textColor="#424242"
-                android:background="@drawable/bg_chip_unselected"
-                android:paddingHorizontal="18dp"
+                android:textColor="#757575"
+                android:background="#E0E0E0"
+                android:paddingHorizontal="16dp"
                 android:paddingVertical="8dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"/>
 
             <TextView
-                android:id="@+id/chipDipinjam"
+                android:id="@+id/btnFilterDipakai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dipinjam"
+                android:text="Sedang Dipakai"
                 android:textSize="13sp"
-                android:textColor="#424242"
-                android:background="@drawable/bg_chip_unselected"
-                android:paddingHorizontal="18dp"
+                android:textColor="#757575"
+                android:background="#E0E0E0"
+                android:paddingHorizontal="16dp"
                 android:paddingVertical="8dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"/>
 
             <TextView
-                android:id="@+id/chipMaintenance"
+                android:id="@+id/btnFilterMaintenance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Maintenance"
                 android:textSize="13sp"
-                android:textColor="#424242"
-                android:background="@drawable/bg_chip_unselected"
-                android:paddingHorizontal="18dp"
+                android:textColor="#757575"
+                android:background="#E0E0E0"
+                android:paddingHorizontal="16dp"
                 android:paddingVertical="8dp" />
-
         </LinearLayout>
     </HorizontalScrollView>
 
-    <!-- RECYCLERVIEW LIST -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDataPC"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingHorizontal="16dp"
-        android:paddingTop="14dp"
+        android:paddingHorizontal="20dp"
         android:clipToPadding="false"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollFilters"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationAdmin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollChips" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- EMPTY STATE (hidden by default, show via code when list is empty) -->
-    <LinearLayout
-        android:id="@+id/layoutEmpty"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollChips">
-
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@android:drawable/ic_menu_manage"
-            android:tint="#BDBDBD" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tidak ada PC ditemukan"
-            android:textSize="14sp"
-            android:textColor="#9E9E9E"
-            android:layout_marginTop="12dp" />
-
-    </LinearLayout>
-
-    <!-- BOTTOM NAVIGATION -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="0dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddPC"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="#FFFFFF"
+        app:backgroundTint="#1A73E8"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationAdmin"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
         android:background="#FFFFFF"
-        app:itemIconTint="#1A73E8"
-        app:itemTextColor="#1A73E8"
+        app:elevation="8dp"
         app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -2,15 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F6FA">
 
     <RelativeLayout
         android:id="@+id/layoutHeaderAdmin"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_header_wave"
+        android:background="#1A73E8"
         android:paddingHorizontal="20dp"
         android:paddingTop="48dp"
         android:paddingBottom="36dp"
@@ -38,14 +39,25 @@
             android:textColor="#E0E0E0" />
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="0dp"
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeaderAdmin"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationAdmin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/mainDashboardContent"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationAdmin"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeaderAdmin"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationAdmin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutHeaderAdmin">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,208 +74,310 @@
                 android:textColor="#1A1A1A"
                 android:layout_marginBottom="12dp" />
 
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_marginBottom="12dp">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="90dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="1dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="14dp"
-                        android:gravity="center_vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total PC"
-                            android:textSize="12sp"
-                            android:textColor="#757575"/>
-                        <TextView
-                            android:id="@+id/tvStatTotalPC"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="32 Unit"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="#1A1A1A"
-                            android:layout_marginTop="2dp"/>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="90dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="1dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="14dp"
-                        android:gravity="center_vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tersedia"
-                            android:textSize="12sp"
-                            android:textColor="#2E7D32"/>
-                        <TextView
-                            android:id="@+id/tvStatPCTersedia"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="20 Unit"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="#2E7D32"
-                            android:layout_marginTop="2dp"/>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:alignmentMode="alignBounds"
+                android:columnOrderPreserved="false"
                 android:layout_marginBottom="24dp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
                     android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="12dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="1dp">
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="14dp"
-                        android:gravity="center_vertical">
-                        <TextView
+                        android:padding="14dp">
+                        <ImageView
+                            android:id="@+id/iconTotalPC"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_menu_monitor"
+                            app:tint="#757575"
+                            tools:ignore="ContentDescription" />
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sedang Dipakai"
-                            android:textSize="12sp"
-                            android:textColor="#C62828"/>
-                        <TextView
-                            android:id="@+id/tvStatPCDipakai"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="12 Unit"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="#C62828"
-                            android:layout_marginTop="2dp"/>
-                    </LinearLayout>
+                            android:orientation="vertical"
+                            android:layout_toEndOf="@id/iconTotalPC"
+                            android:layout_marginStart="10dp"
+                            android:layout_centerVertical="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total PC"
+                                android:textSize="11sp"
+                                android:textColor="#757575"/>
+                            <TextView
+                                android:id="@+id/tvStatTotalPC"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="32 Unit"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"/>
+                        </LinearLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    android:layout_weight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="14dp">
+                        <ImageView
+                            android:id="@+id/iconTersedia"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            android:src="@android:drawable/checkbox_on_background"
+                            app:tint="#2E7D32"
+                            tools:ignore="ContentDescription" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_toEndOf="@id/iconTersedia"
+                            android:layout_marginStart="10dp"
+                            android:layout_centerVertical="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tersedia"
+                                android:textSize="11sp"
+                                android:textColor="#2E7D32"/>
+                            <TextView
+                                android:id="@+id/tvStatPCTersedia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="20 Unit"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#2E7D32"/>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="1dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="14dp">
+                        <ImageView
+                            android:id="@+id/iconDipakai"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            android:src="@android:drawable/ic_menu_share"
+                            app:tint="#C62828"
+                            tools:ignore="ContentDescription" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_toEndOf="@id/iconDipakai"
+                            android:layout_marginStart="10dp"
+                            android:layout_centerVertical="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sedang Dipakai"
+                                android:textSize="11sp"
+                                android:textColor="#C62828"/>
+                            <TextView
+                                android:id="@+id/tvStatPCDipakai"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="12 Unit"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#C62828"/>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
                     android:layout_marginStart="6dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="1dp">
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="14dp"
-                        android:gravity="center_vertical">
-                        <TextView
+                        android:padding="14dp">
+                        <ImageView
+                            android:id="@+id/iconMaintenance"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            android:src="@android:drawable/ic_dialog_alert"
+                            app:tint="#FF9800"
+                            tools:ignore="ContentDescription" />
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Butuh Persetujuan"
-                            android:textSize="12sp"
-                            android:textColor="#FF9800"/>
-                        <TextView
-                            android:id="@+id/tvStatPendingRequest"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="5 Antrean"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="#FF9800"
-                            android:layout_marginTop="2dp"/>
-                    </LinearLayout>
+                            android:orientation="vertical"
+                            android:layout_toEndOf="@id/iconMaintenance"
+                            android:layout_marginStart="10dp"
+                            android:layout_centerVertical="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Persetujuan"
+                                android:textSize="11sp"
+                                android:textColor="#FF9800"/>
+                            <TextView
+                                android:id="@+id/tvStatPendingRequest"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5 Antrean"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#FF9800"/>
+                        </LinearLayout>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
-            </LinearLayout>
+            </GridLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Manajemen Perangkat"
+                android:text="Aksi cepat"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="#1A1A1A"
-                android:layout_marginBottom="12dp" />
+                android:textColor="#1A1A1A" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnMenuKelolaPC"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kelola peminjaman dan data lebih mudah"
+                android:textSize="11sp"
+                android:textColor="#7A7A7A"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="14dp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="2dp"
-                android:foreground="?attr/selectableItemBackground">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="16dp">
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@android:drawable/ic_menu_manage"
-                        app:tint="#1A73E8"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnPinjamPC"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#1A73E8"
+                    app:cardElevation="2dp">
+
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_marginStart="14dp">
+                        android:gravity="center"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_input_add"
+                            app:tint="#FFFFFF"
+                            tools:ignore="ContentDescription" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Kelola Data PC Lab"
+                            android:text="Pinjam PC"
+                            android:textColor="#FFFFFF"
+                            android:textSize="13sp"
                             android:textStyle="bold"
-                            android:textColor="#1A1A1A"
-                            android:textSize="14sp"/>
+                            android:layout_marginTop="6dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnLihatDataPC"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_sort_by_size"
+                            app:tint="#1A73E8"
+                            tools:ignore="ContentDescription" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tambah, edit lokasi, atau update status PC"
-                            android:textColor="#757575"
-                            android:textSize="11sp"/>
+                            android:text="Lihat data PC"
+                            android:textColor="#1A73E8"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="6dp"/>
                     </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationAdmin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
         android:background="#FFFFFF"
-        app:itemIconTint="#1A73E8"
-        app:itemTextColor="#1A73E8"
+        app:elevation="8dp"
         app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -1,76 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="1dp"
-    app:cardBackgroundColor="#FFFFFF">
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="14dp"
+        android:padding="16dp"
         android:gravity="center_vertical">
 
-        <!-- Left status bar accent -->
-        <View
-            android:id="@+id/viewStatusAccent"
-            android:layout_width="4dp"
+        <FrameLayout
+            android:id="@+id/layoutIconContainer"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/circle_green"> <ImageView
+            android:id="@+id/imgPcIcon"
+            android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/circle_green" />
+            android:layout_gravity="center"
+            android:src="@drawable/ic_home" /> </FrameLayout>
 
-        <!-- PC Icon -->
-        <ImageView
-            android:id="@+id/imgPCIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@android:drawable/ic_menu_manage"
-            android:tint="#2E7D32"
-            android:layout_marginStart="12dp" />
-
-        <!-- PC Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="12dp">
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvKodePC"
+                android:id="@+id/tvKodePc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PC-001"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="#1A1A1A" />
+                android:text="PC-002"
+                android:textColor="#002D57"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvLokasi"
+                android:id="@+id/tvLokasiPc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lab A - Komputer 1"
-                android:textSize="11sp"
-                android:textColor="#9E9E9E"
-                android:layout_marginTop="2dp" />
+                android:layout_marginTop="4dp"
+                android:text="Lab A - Komputer 2"
+                android:textColor="#7F8C8D"
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- Status badge -->
         <TextView
-            android:id="@+id/tvStatus"
+            android:id="@+id/tvStatusBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tersedia"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:textColor="#2E7D32"
-            android:background="@drawable/bg_badge_selesai"
+            android:background="@drawable/bg_badge_aktif"
             android:paddingHorizontal="12dp"
-            android:paddingVertical="5dp" />
+            android:paddingVertical="6dp"
+            android:text="Tersedia"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

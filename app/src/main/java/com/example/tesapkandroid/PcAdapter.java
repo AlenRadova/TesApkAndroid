@@ -1,6 +1,7 @@
 package com.example.tesapkandroid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +73,18 @@ public class PcAdapter extends RecyclerView.Adapter<PcAdapter.PcViewHolder> {
             holder.tvStatusBadge.getBackground().setTint(Color.parseColor("#D32F2F")); // Merah
             holder.tvStatusBadge.setTextColor(ContextCompat.getColor(context, android.R.color.white));
         }
+
+        // TAMBAHAN: LOGIKA KLIK ITEM MENUJU DETAIL PC
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailPcActivity.class);
+                intent.putExtra("KODE_PC", pc.getKodePc());
+                intent.putExtra("LOKASI_PC", pc.getLokasiPc());
+                intent.putExtra("STATUS_PC", pc.getStatus());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

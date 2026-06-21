@@ -48,7 +48,7 @@ public class DashboardActivity extends AppCompatActivity {
         mainDashboardContent = findViewById(R.id.mainDashboardContent);
 
         // ==========================================
-        // TAMBAHAN: LOGIKA DROPDOWN SPINNER LAB
+        // LOGIKA DROPDOWN SPINNER LAB
         // ==========================================
         spinnerPilihanLab = findViewById(R.id.spinnerPilihanLab);
         if (spinnerPilihanLab != null) {
@@ -87,9 +87,10 @@ public class DashboardActivity extends AppCompatActivity {
                 }
             });
         }
-        // ==========================================
 
-        // 3. Logika klik tombol menu navigasi bawah (4 Menu gabungan)
+        // ==========================================
+        // 3. LOGIKA KLIK TOMBOL MENU NAVIGASI BAWAH
+        // ==========================================
         if (bottomNavigation != null) {
             bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -118,12 +119,15 @@ public class DashboardActivity extends AppCompatActivity {
                     }
 
                     else if (itemId == R.id.nav_riwayat) {
-                        // KLIK TRANSAKSI: Sembunyikan home, siapkan wadah fragment transaksi
+                        // KLIK RIWAYAT: Sembunyikan home, jalankan RiwayatFragment di fragment_container
                         if (mainDashboardContent != null) mainDashboardContent.setVisibility(View.GONE);
                         if (findViewById(R.id.fragment_container) != null) {
                             findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
-                            // Jika nanti ada fragment transaksi, buka tanda komentar baris di bawah:
-                            // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TransaksiFragment()).commit();
+
+                            // MENAMPILKAN RIWAYAT FRAGMENT
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_container, new RiwayatFragment())
+                                    .commit();
                         }
                         return true;
                     }

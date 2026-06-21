@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView; // Pastikan TextView sudah di-import
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,7 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private Button btnLogin;
 
-    // 1. Deklarasikan objek DatabaseHelper
+    // 1. Deklarasikan variabel untuk teks Register dan Forgot Password
+    private TextView tvRegister, tvForgotPassword;
+
+    // Deklarasikan objek DatabaseHelper
     private DatabaseHelper dbHelper;
 
     @Override
@@ -34,13 +38,19 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 2. Inisialisasi DatabaseHelper
+        // Inisialisasi DatabaseHelper
         dbHelper = new DatabaseHelper(this);
 
+        // 2. Hubungkan variabel Java dengan ID yang ada di activity_main.xml
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        tvRegister = findViewById(R.id.tvRegister);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword); // Hubungkan id lupa password
 
+        // =======================================================
+        // AKSI TOMBOL LOGIN
+        // =======================================================
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,41 +58,56 @@ public class MainActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString().trim();
 
                 if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Email dan Password wajib diisi!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Email dan Password tidak boleh kosong!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // 3. Panggil fungsi cek login dari SQLite
-                Cursor cursor = dbHelper.checkUserLogin(email, password);
+                Cursor cursor = dbHelper.checkLogin(email, password);
 
-                // 4. Jika cursor memiliki data (moveToFirst berstatus true), berarti akun ditemukan!
                 if (cursor != null && cursor.moveToFirst()) {
-
-                    // Ambil data Nama dan Role dari kolom database
-                    // Kita gunakan getColumnIndex untuk mencari nomor urut kolomnya
                     int indexNama = cursor.getColumnIndex(DatabaseHelper.COL_NAMA);
                     int indexRole = cursor.getColumnIndex(DatabaseHelper.COL_ROLE);
 
                     String namaUser = cursor.getString(indexNama);
                     String roleUser = cursor.getString(indexRole);
 
-                    // Tutup cursor agar tidak membebani memori
                     cursor.close();
 
-                    // Tampilkan pesan sukses menyapa nama user
                     Toast.makeText(MainActivity.this, "Selamat Datang, " + namaUser, Toast.LENGTH_SHORT).show();
 
-                    // Lempar ke DashboardActivity membawa Flag ROLE asli dari DB
                     Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                     intent.putExtra("ROLE", roleUser);
                     startActivity(intent);
                     finish();
 
                 } else {
-                    // Jika data tidak cocok atau tidak ditemukan di tabel database
                     Toast.makeText(MainActivity.this, "Email atau Password salah!", Toast.LENGTH_SHORT).show();
                     if (cursor != null) cursor.close();
                 }
+            }
+        });
+
+        // =======================================================
+        // AKSI TEKS REGISTER / DAFTAR
+        // =======================================================
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Pindah dari MainActivity ke RegisterActivity
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // =======================================================
+        // AKSI TEKS LUPA PASSWORD (BARU)
+        // =======================================================
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Pindah dari MainActivity ke ForgotPasswordActivity
+                Intent intent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -2,43 +2,47 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F6FA">
 
-    <!-- HEADER -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#1A73E8"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#0066BE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/btnBackPeminjaman"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#FFFFFF"
+            tools:ignore="ContentDescription" />
+
         <TextView
+            android:id="@+id/tvTitlePeminjaman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pinjam PC"
-            android:textSize="20sp"
+            android:text="Peminjaman Baru"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF" />
+            app:layout_constraintBottom_toBottomOf="@+id/btnBackPeminjaman"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnBackPeminjaman" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Isi data peminjaman dengan lengkap"
-            android:textSize="13sp"
-            android:textColor="#BBDEFB"
-            android:layout_marginTop="4dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-    <!-- SCROLLABLE FORM -->
     <ScrollView
         android:id="@+id/scrollForm"
         android:layout_width="0dp"
@@ -56,7 +60,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- CARD: Pilih PC -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +90,6 @@
                         android:background="@drawable/bg_input_outline"
                         android:paddingHorizontal="12dp" />
 
-                    <!-- Status preview of selected PC -->
                     <LinearLayout
                         android:id="@+id/layoutPCStatus"
                         android:layout_width="wrap_content"
@@ -114,7 +116,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CARD: Data Peminjam -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,7 +139,6 @@
                         android:textColor="#1A1A1A"
                         android:layout_marginBottom="12dp" />
 
-                    <!-- NIM -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -166,7 +166,6 @@
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Nama -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -198,7 +197,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CARD: Detail Peminjaman -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -221,7 +219,6 @@
                         android:textColor="#1A1A1A"
                         android:layout_marginBottom="12dp" />
 
-                    <!-- Waktu Mulai -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -247,7 +244,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Pilih tanggal dan jam"
+                            android:text="Pilih jam mulai"
                             android:textSize="14sp"
                             android:textColor="#9E9E9E" />
 
@@ -255,10 +252,10 @@
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:src="@android:drawable/ic_menu_my_calendar"
-                            android:tint="#1A73E8" />
+                            android:tint="#0066BE"
+                            tools:ignore="ContentDescription" />
                     </LinearLayout>
 
-                    <!-- Durasi Jam -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -287,7 +284,6 @@
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Estimasi Selesai (read-only, auto calculated) -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -301,7 +297,8 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@android:drawable/ic_menu_recent_history"
-                            android:tint="#1A73E8" />
+                            android:tint="#0066BE"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -318,10 +315,9 @@
                             android:text="-"
                             android:textSize="12sp"
                             android:textStyle="bold"
-                            android:textColor="#1A73E8" />
+                            android:textColor="#0066BE" />
                     </LinearLayout>
 
-                    <!-- Keperluan -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -357,7 +353,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- SUBMIT BUTTON (fixed at bottom) -->
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="0dp"
@@ -365,7 +360,7 @@
         android:text="Buat Peminjaman"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:backgroundTint="#1A73E8"
+        android:backgroundTint="#0066BE"
         android:textColor="#FFFFFF"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"

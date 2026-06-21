@@ -34,6 +34,16 @@
             android:name=".DetailPcActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".PeminjamanActivity"
+            android:exported="false" />
+
+        <activity android:name=".ForgotPasswordActivity"
+            android:exported="false" />
+
+        <activity android:name=".SuccessActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

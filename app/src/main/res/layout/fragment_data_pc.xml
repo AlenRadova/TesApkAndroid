@@ -9,15 +9,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:background="@drawable/bg_header_wave">
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
+            android:padding="8dp"
             android:src="@drawable/ic_arrow_back_24"
             tools:ignore="ContentDescription" />
 
@@ -27,7 +28,7 @@
             android:layout_centerInParent="true"
             android:text="Data PC"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -40,7 +41,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/bg_input_outline"
             android:gravity="center_vertical"
@@ -48,8 +49,8 @@
             android:paddingEnd="12dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@android:drawable/ic_menu_search"
                 tools:ignore="ContentDescription" />
 
@@ -66,19 +67,19 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnFilterLab"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginStart="12dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="25dp"
+            app:cardCornerRadius="22.5dp"
             app:cardElevation="2dp"
             app:cardBackgroundColor="#FFFFFF">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_filter"
                 app:tint="#1A73E8"

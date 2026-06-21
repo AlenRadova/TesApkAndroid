@@ -4,11 +4,17 @@
     <item
         android:id="@+id/nav_dashboard"
         android:icon="@drawable/ic_home"
-        android:title="Beranda" />
+        android:title="Home" />
+
+    <item
+        android:id="@+id/navigation_data_pc"
+        android:icon="@drawable/ic_menu_monitor"
+        android:title="Data PC" />
 
     <item
         android:id="@+id/nav_riwayat"
-        android:icon="@drawable/ic_history" android:title="Riwayat" />
+        android:icon="@drawable/ic_history"
+        android:title="Transaksi" />
 
     <item
         android:id="@+id/nav_profile"

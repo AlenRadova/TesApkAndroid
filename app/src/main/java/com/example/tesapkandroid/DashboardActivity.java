@@ -3,6 +3,9 @@ package com.example.tesapkandroid;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -11,15 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DashboardActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigation;
-    // DEKLARASI DI SINI (Memperbaiki error merah mainDashboardContent)
     private androidx.core.widget.NestedScrollView mainDashboardContent;
+    private Spinner spinnerPilihanLab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,49 @@ public class DashboardActivity extends AppCompatActivity {
         // Inisialisasi kontainer konten beranda statis
         mainDashboardContent = findViewById(R.id.mainDashboardContent);
 
-        // 3. Logika klik tombol menu navigasi bawah sesuai dengan bottom_nav_menu.xml kamu
+        // ==========================================
+        // TAMBAHAN: LOGIKA DROPDOWN SPINNER LAB
+        // ==========================================
+        spinnerPilihanLab = findViewById(R.id.spinnerPilihanLab);
+        if (spinnerPilihanLab != null) {
+            // Menyiapkan data pilihan Lab
+            String[] daftarLab = {"Lab A", "Lab B", "Lab C"};
+
+            // Menggunakan layout 'spinner_item' agar warna teks menjadi hitam kontras
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this, R.layout.spinner_item, daftarLab
+            );
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerPilihanLab.setAdapter(adapter);
+
+            // Membuat dropdown berfungsi saat dipilih
+            spinnerPilihanLab.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String labTerpilih = daftarLab[position];
+
+                    // Memunculkan Toast pemberitahuan aksi
+                    Toast.makeText(DashboardActivity.this, "Menampilkan data " + labTerpilih, Toast.LENGTH_SHORT).show();
+
+                    // Jalankan perintah pengkondisian di bawah ini jika kamu ingin merubah data statistik dari database nantinya
+                    if (labTerpilih.equals("Lab A")) {
+                        // Jalankan logika/panggil data Lab A
+                    } else if (labTerpilih.equals("Lab B")) {
+                        // Jalankan logika/panggil data Lab B
+                    } else if (labTerpilih.equals("Lab C")) {
+                        // Jalankan logika/panggil data Lab C
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // Kosongkan jika tidak ada penanganan khusus
+                }
+            });
+        }
+        // ==========================================
+
+        // 3. Logika klik tombol menu navigasi bawah (4 Menu gabungan)
         if (bottomNavigation != null) {
             bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -53,7 +97,7 @@ public class DashboardActivity extends AppCompatActivity {
                     int itemId = item.getItemId();
 
                     if (itemId == R.id.nav_dashboard) {
-                        // KLIk BERANDA: Tampilkan statistik utama, sembunyikan wadah fragment
+                        // KLIK HOME: Tampilkan beranda statis (statistik), sembunyikan fragment container
                         if (mainDashboardContent != null) mainDashboardContent.setVisibility(View.VISIBLE);
                         if (findViewById(R.id.fragment_container) != null) {
                             findViewById(R.id.fragment_container).setVisibility(View.GONE);
@@ -61,8 +105,8 @@ public class DashboardActivity extends AppCompatActivity {
                         return true;
                     }
 
-                    else if (itemId == R.id.nav_riwayat) {
-                        // KLIK RIWAYAT: Sembunyikan statistik utama, tampilkan list PC (DataPcFragment)
+                    else if (itemId == R.id.navigation_data_pc) {
+                        // KLIK DATA PC (IKON MONITOR): Sembunyikan home, tampilkan List PC di fragment_container
                         if (mainDashboardContent != null) mainDashboardContent.setVisibility(View.GONE);
                         if (findViewById(R.id.fragment_container) != null) {
                             findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
@@ -73,11 +117,23 @@ public class DashboardActivity extends AppCompatActivity {
                         return true;
                     }
 
-                    else if (itemId == R.id.nav_profile) {
-                        // KLIK PROFIL: Sembunyikan statistik utama, tampilkan fragment profile jika ada
+                    else if (itemId == R.id.nav_riwayat) {
+                        // KLIK TRANSAKSI: Sembunyikan home, siapkan wadah fragment transaksi
                         if (mainDashboardContent != null) mainDashboardContent.setVisibility(View.GONE);
                         if (findViewById(R.id.fragment_container) != null) {
                             findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
+                            // Jika nanti ada fragment transaksi, buka tanda komentar baris di bawah:
+                            // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TransaksiFragment()).commit();
+                        }
+                        return true;
+                    }
+
+                    else if (itemId == R.id.nav_profile) {
+                        // KLIK PROFIL: Sembunyikan home, siapkan wadah fragment profile
+                        if (mainDashboardContent != null) mainDashboardContent.setVisibility(View.GONE);
+                        if (findViewById(R.id.fragment_container) != null) {
+                            findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
+                            // Jika nanti ada fragment profile, buka tanda komentar baris di bawah:
                             // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
                         }
                         return true;

@@ -1,11 +1,11 @@
 package com.example.tesapkandroid;
 
-import android.content.SharedPreferences; // Tambahkan import ini
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout; // Tambahkan import ini
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +18,7 @@ public class DetailPcActivity extends AppCompatActivity {
     private ImageView imgPowerIcon;
     private ProgressBar progressDetailWaktu;
     private CardView btnDetailPeringatan, btnDetailPesanCustom, btnActionPowerPc;
-    private LinearLayout layoutActionAdmin; // Tambahkan variabel layout
+    private LinearLayout layoutActionAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +47,12 @@ public class DetailPcActivity extends AppCompatActivity {
         // Inisialisasi layout tombol admin
         layoutActionAdmin = findViewById(R.id.layoutActionAdmin);
 
-        // --- LOGIKA ROLE (ADMIN VS USER) ---
+        // --- LOGIKA ROLE (ADMIN VS USER) HANYA MEMBACA ---
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         String userRole = sharedPreferences.getString("role", "USER"); // Default USER
 
         if (userRole.equals("USER")) {
-            layoutActionAdmin.setVisibility(View.GONE); // Sembunyikan tombol peringatan & pesan
+            layoutActionAdmin.setVisibility(View.GONE); // Sembunyikan tombol peringatan & pesan untuk Mahasiswa
         } else {
             layoutActionAdmin.setVisibility(View.VISIBLE); // Tampilkan untuk Admin
         }
